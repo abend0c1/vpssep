@@ -36,71 +36,71 @@ Usage
       rexx VPSSEP [infile [outfile]] [(options...]
 Where:
 
-infile  = Input dataset containing PCL driver binary 
-          output.
+      infile  = Input dataset containing PCL driver binary 
+                output.
 
-outfile = Output dataset to contain the template.
-          Both the input and output dataset names are
-          have to re-specify them each time.
+      outfile = Output dataset to contain the template.
+                Both the input and output dataset names are
+                have to re-specify them each time.
 
-          If you initially specify a PDS dataset and
-          member name - e.g. MY.PDS(INPUT1) - then you 
-          can specify just a member name the next time 
-          - e.g. INPUT2 - and the last PDS will be
-          used.
+                If you initially specify a PDS dataset and
+                member name - e.g. MY.PDS(INPUT1) - then you 
+                can specify just a member name the next time 
+                - e.g. INPUT2 - and the last PDS will be
+                used.
 
-          You can ask to be prompted for a dataset name
-          by specifying '..' for infile or outfile.
+                You can ask to be prompted for a dataset name
+                by specifying '..' for infile or outfile.
 
-          You can ask that the last dataset be used
-          by specifying '.' for infile or outfile.
+                You can ask that the last dataset be used
+                by specifying '.' for infile or outfile.
 
-          A typical session might look like:
+                A typical session might look like:
 
-          1. Upload PCL file to a.b.c(m1), then:
-             tso vpssep
-             Enter input dataset name:
-             a.b.c(m1)
-             Converting a.b.c(m1) to a.b.c(m1$)
-             Building PCL command table...
-             Reading a.b.c(m1)...
-             a.b.c(m1) contains 142 bytes of data
-             Processing...
-             Processed 0%
-             Processed 88%
-             Processed 92%
-             Done
-             ***
+                1. Upload PCL file to a.b.c(m1), then:
+                   tso vpssep
+                   Enter input dataset name:
+                   a.b.c(m1)
+                   Converting a.b.c(m1) to a.b.c(m1$)
+                   Building PCL command table...
+                   Reading a.b.c(m1)...
+                   a.b.c(m1) contains 142 bytes of data
+                   Processing...
+                   Processed 0%
+                   Processed 88%
+                   Processed 92%
+                   Done
+                   ***
 
-          2. Upload another PCL file to a.b.c(m2), then
-             tso vpssep m2
-             Converting a.b.c(m2) to a.b.c(m2$)
-             Building PCL command table...
-             Reading a.b.c(m2)...
-             a.b.c(m2) contains 111 bytes of data
-             Processing...
-             Processed 0%
-             Processed 88%
-             Processed 92%
-             Done
-             ***
+                2. Upload another PCL file to a.b.c(m2), then
+                   tso vpssep m2
+                   Converting a.b.c(m2) to a.b.c(m2$)
+                   Building PCL command table...
+                   Reading a.b.c(m2)...
+                   a.b.c(m2) contains 111 bytes of data
+                   Processing...
+                   Processed 0%
+                   Processed 88%
+                   Processed 92%
+                   Done
+                   ***
 
-options = ASM    - Emit assembly language source code
-          COM    - Emit * records documenting font
-                   headers and HP/GL2 PE commands
-          DRAW   - Emit * records that draw each font
-                   character definition (pclxl only).
-          HEX    - Emit * records for binary data (in
-                   printable hex)
-          SPACE  - Emit blank lines
-          TRACE  - Trace conversion process
-          VAR    - Emit & record for variable names
-          X      - Emit X (printable hex) records rathe
-                   than B (binary) records for binary
-                   data.
+      options = ASM    - Emit assembly language source code
+                COM    - Emit * records documenting font
+                         headers and HP/GL2 PE commands
+                DRAW   - Emit * records that draw each font
+                         character definition (pclxl only).
+                HEX    - Emit * records for binary data (in
+                         printable hex)
+                SPACE  - Emit blank lines
+                TRACE  - Trace conversion process
+                VAR    - Emit & record for variable names
+                X      - Emit X (printable hex) records rathe
+                         than B (binary) records for binary
+                         data.
 
-          Prefix any option with 'NO' to negate it.
-          For example, NOSPACE to supress blank lines.
+                Prefix any option with 'NO' to negate it.
+                For example, NOSPACE to supress blank lines.
           
 Prerequisites
 -------------
