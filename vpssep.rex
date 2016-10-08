@@ -590,6 +590,19 @@ openFile: procedure expose g.
       then g.0rc = 0
       else g.0rc = 4
     end
+    when g.0SYSTEM = 'UNIX' then do
+      if sFile = '' 
+      then g.0rc = 0
+      else do
+        if wordpos('OUTPUT',sOptions) > 0
+        then junk = stream(sFile,'COMMAND','OPEN WRITE REPLACE')
+        else junk = stream(sFile,'COMMAND','OPEN READ')
+        hFile = sFile
+        if junk = 'READY:'
+        then g.0rc = 0
+        else g.0rc = 4
+      end
+    end
     otherwise call Abort,
       'Do not know how to open files on system type:' g.0SYSTEM
   end
@@ -610,11 +623,13 @@ getLine: procedure expose g.
       sLine = strip(sLine,'TRAILING')
       if sLine = '' then sLine = ' '
     end
-    when g.0SYSTEM = 'WIN32' then do
+    when g.0SYSTEM = 'WIN32' | g.0SYSTEM = 'UNIX' then do
+    trace r
       g.0rc = 0
       if chars(hFile) > 0
       then sLine = linein(hFile)
       else g.0rc = 4
+    trace o
     end
     otherwise nop
   end
@@ -635,7 +650,7 @@ putLine: procedure expose g.
       'LMPUT DATAID(&hFile) MODE(INVAR)',
             'DATALOC(sLine) DATALEN('length(sLine)')'
     end
-    when g.0SYSTEM = 'WIN32' then do
+    when g.0SYSTEM = 'WIN32' | g.0SYSTEM = 'UNIX' then do
       junk = lineout(hFile,sLine)
       rc = 0
     end
@@ -672,7 +687,7 @@ closeFile: procedure expose g.
       'LMCLOSE DATAID(&hFile)'
       'LMFREE  DATAID(&hFile)'
     end
-    when g.0SYSTEM = 'WIN32' then do
+    when g.0SYSTEM = 'WIN32' | g.0SYSTEM = 'UNIX' then do
       if stream(hFile,'COMMAND','CLOSE') = 'UNKNOWN'
       then rc = 0
       else rc = 4
@@ -700,7 +715,7 @@ getEntireFile: procedure expose g.
         sLine = getLIne(hFile)
       end
     end
-    when g.0SYSTEM = 'WIN32' then do
+    when g.0SYSTEM = 'WIN32' | g.0SYSTEM = 'UNIX' then do
       g.0rc = 0
       if chars(hFile) > 0
       then sData = charin(hFile,1,chars(hFile))
