@@ -2039,6 +2039,10 @@ PCL &b  #  M         Color       Monochrome print mode,,
         0=Print in mixed render algorithm mode
         1=Print everything in gray equivalent
 
+PCL &b  #  F         Color       Finish mode,,              
+        0=Matte finish (default)               
+        1=Glossy finish
+
 PCL &p  #  C         Color       Palette control,,
         0=Delete all palettes except those in the stack
         1=Delete all palettes in stack
@@ -2449,6 +2453,8 @@ PCL *l  #  O         PrintModel  Logical (ROP3) operation
 PCL *l  #  R         PrintModel  Pixel placement,,
         0=Grid intersection
         1=Grid centered
+
+PCL *o  #  W (data)  PrintModel  Driver configuration,bytes
 
 PCL *p  #  R         PrintModel  Set pattern reference point
 
